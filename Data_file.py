@@ -3,7 +3,7 @@ import json
 import random
 from urllib.request import urlopen
 from urllib.error import URLError
-import who_wants_to_be_a_movie_expert
+import Movie_expert
 import sys
 from PySide2.QtWidgets import QApplication
 
@@ -22,7 +22,7 @@ except URLError as e:
         print('Some problems with Internet connection')
         print('Error code: ', e.code)
     app = QApplication(sys.argv)
-    error = who_wants_to_be_a_movie_expert.NoInternet()
+    error = Movie_expert.NoInternet()
     sys.exit(app.exec_())
 
 parameters = {
@@ -70,7 +70,6 @@ def formatting_wrong(wrong):
 class QuestionAnswers:
     def __init__(self):
         self.get_index()
-        # self.idx = random.randint(0, 49)
         self.question = formatting(df['question'][self.idx])
         self.correct = formatting(df['correct_answer'][self.idx])
         self.wrong_answers = formatting_wrong(df['incorrect_answers'][self.idx])
@@ -90,7 +89,7 @@ class QuestionAnswers:
 
     def get_index(self):
         self.idx = random.randint(0, 49)
-        for i in parameters['index']:
+        for _ in parameters['index']:
             if self.idx in parameters['index']:
                 self.idx = random.randint(0, 49)
         else:
