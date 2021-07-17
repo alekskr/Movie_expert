@@ -20,11 +20,11 @@ class MainFrame(QMainWindow):
         self.setWindowTitle('Who want to be a MOVIE EXPERT')
         self.setMinimumSize(1000, 600)
         self.setStyleSheet('background: #282a36;')
-
+        #
         self.ico = QIcon()
         self.ico.addFile('ico.ico')
         self.setWindowIcon(self.ico)
-
+        #
         self.image = QPixmap('logo1.png')
         self.logo = QLabel()
         self.logo.setPixmap(self.image)
@@ -60,11 +60,25 @@ class MainFrame(QMainWindow):
         self.close()
 
 
-class GameFrame(MainFrame):
+class GameFrame(QMainWindow):
     """Window with question and answers"""
     def __init__(self):
         super().__init__()
         Data_file.QuestionAnswers()
+        self.setWindowTitle('Who want to be a MOVIE EXPERT')
+        self.setMinimumSize(800, 400)
+        self.setStyleSheet('background: #282a36;')
+
+        self.ico = QIcon()
+        self.ico.addFile('ico.ico')
+        self.setWindowIcon(self.ico)
+
+        self.image = QPixmap('logo1.png')
+        self.logo = QLabel()
+        self.logo.setPixmap(self.image)
+        self.logo.setAlignment(QtCore.Qt.AlignCenter)
+        self.setMinimumSize(1000, 600)
+
         self.question = QLabel(Data_file.parameters['question'][-1])
         self.question.setMinimumHeight(220)
         self.question.setWordWrap(True)
@@ -100,10 +114,12 @@ class GameFrame(MainFrame):
         self.click_on_btn()
 
         self.image = QPixmap('logo2.png')
+        self.logo = QLabel()
         self.logo.setPixmap(self.image)
         self.logo.setAlignment(QtCore.Qt.AlignCenter)
         self.logo.setStyleSheet('margin-top: 50px; margin-bottom: 30px;')
 
+        self.grid = QGridLayout()
         self.grid.addWidget(self.your_score, 0, 0)
         self.grid.addWidget(self.score, 0, 1)
         self.grid.addWidget(self.question, 1, 0, 1, 2)
@@ -112,6 +128,11 @@ class GameFrame(MainFrame):
         self.grid.addWidget(self.btn3, 3, 0)
         self.grid.addWidget(self.btn4, 3, 1)
         self.grid.addWidget(self.logo, 4, 0, 1, 2)
+
+        self.container = QFrame()
+        self.container.setLayout(self.grid)
+        self.setCentralWidget(self.container)
+        self.show()
 
     def create_button(self, answer, l_margin, r_margin):
         """Method create buttons with answers"""

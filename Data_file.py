@@ -11,8 +11,9 @@ try:
     with urlopen('https://opentdb.com/api.php?amount=50&category=11&difficulty=easy&type=multiple') as webpage:
         data = json.loads(webpage.read().decode())
         df = pd.DataFrame(data['results'])
-        # print(df.head())
-        # print(df.columns)  # creating a list of all columns
+        print(df.head())
+        print(df.columns)  # creating a list of all columns
+        print(df.shape)
 
 except URLError as e:
     if hasattr(e, 'reason'):
