@@ -66,17 +66,17 @@ class GameFrame(QMainWindow):
         super().__init__()
         Data_file.QuestionAnswers()
         self.setWindowTitle('Who want to be a MOVIE EXPERT')
-        self.setMinimumSize(800, 400)
+        # self.setMinimumSize(800, 400)
         self.setStyleSheet('background: #282a36;')
 
         self.ico = QIcon()
         self.ico.addFile('ico.ico')
         self.setWindowIcon(self.ico)
 
-        self.image = QPixmap('logo1.png')
-        self.logo = QLabel()
-        self.logo.setPixmap(self.image)
-        self.logo.setAlignment(QtCore.Qt.AlignCenter)
+        # self.image = QPixmap('logo1.png')
+        # self.logo = QLabel()
+        # self.logo.setPixmap(self.image)
+        # self.logo.setAlignment(QtCore.Qt.AlignCenter)
         self.setMinimumSize(1000, 600)
 
         self.question = QLabel(Data_file.parameters['question'][-1])
